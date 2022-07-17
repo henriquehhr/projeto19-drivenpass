@@ -25,7 +25,7 @@ model User {
 
 model Credential {
   id Int @id @default(autoincrement())
-  title String @unique
+  title String
   url String
   username String
   password String
@@ -37,7 +37,7 @@ model Credential {
 
 model SafeNote {
   id Int @id @default(autoincrement())
-  title String @unique
+  title String
   text String
   user User @relation(fields: [userId], references: [id])
   userId Int
@@ -47,7 +47,7 @@ model SafeNote {
 
 model Card {
   id Int @id @default(autoincrement())
-  number String @unique
+  number String
   printedName String
   CVV String
   expirationDate DateTime
