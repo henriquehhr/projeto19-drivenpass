@@ -15,7 +15,22 @@ export async function insert(credential: CreateCredential) {
 
 export async function getById(credencialId: number, userId: number) {
   const credential = await credentialRepository.getById(credencialId);
+  if(!credential)
+    throw {type: "NotFound", message: "Credential ID not founded"}
   if(credential.userId != userId)
     throw {type: "Forbidden", message: "Not your credential"}
+  const cryptr = new Cryptr(process.env.CRYPTR_KEY);
+  const passwordDecrypted = cryptr.decrypt(credential.password);
+  credential.password = passwordDecrypted;
   return credential;
+}
+
+export async function getByUserId(userId: number) {
+  const credentials = await credentialRepository.getByUserId(userId);
+  const cryptr = new Cryptr(process.env.CRYPTR_KEY);
+  credentials.forEach(credential => {
+    const passwordDecrypted = cryptr.decrypt(credential.password);
+    credential.password = passwordDecrypted;
+  });
+  return credentials;
 }

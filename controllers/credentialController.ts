@@ -14,8 +14,14 @@ export async function insert (req: Request, res: Response) {
 }
 
 export async function getById (req: Request, res: Response) {
-  const userId = parseInt(res.locals.userId);
+  const userId = parseInt(res.locals.user.id);
   const credencialId = parseInt(req.params.id);
   const credential = await credentialService.getById(credencialId, userId);
-  return credential;
+  res.send(credential);
+}
+
+export async function getByUserId (req: Request, res: Response) {
+  const userId = parseInt(res.locals.user.id);
+  const credentials = await credentialService.getByUserId(userId);
+  res.send(credentials);
 }
