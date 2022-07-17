@@ -34,3 +34,12 @@ export async function getByUserId(userId: number) {
   });
   return credentials;
 }
+
+export async function remove(credencialId: number, userId: number) {
+  const credential = await credentialRepository.getById(credencialId);
+  if(!credential)
+    throw {type: "Not Found", message: "Credential ID not founded"};
+  if(credential.userId != userId)
+    throw {type: "Forbidden", message: "Credential don't belong to user"};
+  await credentialRepository.remove(credencialId);
+}

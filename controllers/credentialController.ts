@@ -10,7 +10,7 @@ export async function insert (req: Request, res: Response) {
     ... req.body, userId: user.id
   };
   await credentialService.insert(credential);
-  res.send(201);
+  res.sendStatus(201);
 }
 
 export async function getById (req: Request, res: Response) {
@@ -24,4 +24,11 @@ export async function getByUserId (req: Request, res: Response) {
   const userId = parseInt(res.locals.user.id);
   const credentials = await credentialService.getByUserId(userId);
   res.send(credentials);
+}
+
+export async function remove (req: Request, res: Response) {
+  const userId = parseInt(res.locals.user.id);
+  const credencialId = parseInt(req.params.id);
+  await credentialService.remove(credencialId, userId);
+  res.sendStatus(200);
 }

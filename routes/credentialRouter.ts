@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { getById, getByUserId, insert } from "../controllers/credentialController.js";
+import { getById, getByUserId, insert, remove } from "../controllers/credentialController.js";
 import { authenticateUser } from "../middlewares/authenticateUser.js";
 import schemaValidator from "../middlewares/schemaValidator.js";
 import { newCredentialSchema } from "../schemas/newCredentialSchema.js"
@@ -25,6 +25,6 @@ credentialRouter.get(
   getByUserId
 );
 
-credentialRouter.delete("/credentials", authenticateUser);
+credentialRouter.delete("/credentials/:id", authenticateUser, remove);
 
 export default credentialRouter;
