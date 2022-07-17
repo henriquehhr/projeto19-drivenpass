@@ -1,34 +1,34 @@
 import { Request, Response } from "express";
-import { CreateCredential } from "../repositories/credentialRepository";
+import { CreateSafeNote } from "../repositories/safeNoteRepository";
 
-import * as credentialService from "../services/credentialService.js";
+import * as safeNoteService from "../services/safeNoteService.js";
 
 
 export async function insert (req: Request, res: Response) {
   const user = res.locals.user;
-  const credential: CreateCredential = {
+  const safeNote: CreateSafeNote = {
     ... req.body, userId: user.id
   };
-  await credentialService.insert(credential);
+  await safeNoteService.insert(safeNote);
   res.sendStatus(201);
 }
 
 export async function getById (req: Request, res: Response) {
   const userId = parseInt(res.locals.user.id);
-  const credencialId = parseInt(req.params.id);
-  const credential = await credentialService.getById(credencialId, userId);
-  res.send(credential);
+  const safeNoteId = parseInt(req.params.id);
+  const safeNote = await safeNoteService.getById(safeNoteId, userId);
+  res.send(safeNote);
 }
 
 export async function getByUserId (req: Request, res: Response) {
   const userId = parseInt(res.locals.user.id);
-  const credentials = await credentialService.getByUserId(userId);
-  res.send(credentials);
+  const safeNotes = await safeNoteService.getByUserId(userId);
+  res.send(safeNotes);
 }
 
 export async function remove (req: Request, res: Response) {
   const userId = parseInt(res.locals.user.id);
-  const credencialId = parseInt(req.params.id);
-  await credentialService.remove(credencialId, userId);
+  const safeNoteId = parseInt(req.params.id);
+  await safeNoteService.remove(safeNoteId, userId);
   res.sendStatus(200);
 }
