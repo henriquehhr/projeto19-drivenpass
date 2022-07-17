@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import prisma from "../database/database.js";
+import jwt from 'jsonwebtoken';
 
 export async function authenticateUser(req: Request, res: Response, next: NextFunction) {
 
@@ -7,12 +7,11 @@ export async function authenticateUser(req: Request, res: Response, next: NextFu
     if (validateTokenFormat != "Bearer ") {
         return res.sendStatus(422);
     }
+    const jwtKey = process.env.JWT_KEY;
     const token = req.headers.authorization.slice(7);
-    const session = await prisma.session.findUnique({where: {token}});
-    if (!session) {
-        return res.sendStatus(401);
+    if (jwt.verify(token, jwtKey)){
+      res.locals.user = jwt.decode(token);
+      next();
     }
-    const user = await prisma.user.findUnique({where:{ id: session.userId}})
-    res.locals.user = user;
-    next();
+    else throw {type: "Unauthorized", message: "Wrong credentials"};
 }
