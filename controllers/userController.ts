@@ -1,4 +1,3 @@
-import { User } from "@prisma/client";
 import { Request, Response } from "express";
 import * as userService from "../services/userService.js";
 import {CreateUser, LoginUser} from "../repositories/userRepository.js";
