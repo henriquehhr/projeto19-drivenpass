@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { insert } from "../controllers/credentialController.js";
+import { getById, insert } from "../controllers/credentialController.js";
 import { authenticateUser } from "../middlewares/authenticateUser.js";
 
 import schemaValidator from "../middlewares/schemaValidator.js";
@@ -13,7 +13,13 @@ credentialRouter.post(
   authenticateUser,
   insert
 );
-credentialRouter.get("/credentials", authenticateUser);
+credentialRouter.get(
+  "/credentials/:id",
+  authenticateUser,
+  getById
+);
+
+
 credentialRouter.delete("/credentials", authenticateUser);
 
 export default credentialRouter;

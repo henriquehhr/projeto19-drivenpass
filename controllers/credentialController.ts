@@ -12,3 +12,10 @@ export async function insert (req: Request, res: Response) {
   await credentialService.insert(credential);
   res.send(201);
 }
+
+export async function getById (req: Request, res: Response) {
+  const userId = parseInt(res.locals.userId);
+  const credencialId = parseInt(req.params.id);
+  const credential = await credentialService.getById(credencialId, userId);
+  return credential;
+}

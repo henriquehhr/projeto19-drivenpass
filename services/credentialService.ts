@@ -12,3 +12,10 @@ export async function insert(credential: CreateCredential) {
   credential.password = encryptedPassword;
   await credentialRepository.insert(credential);
 }
+
+export async function getById(credencialId: number, userId: number) {
+  const credential = await credentialRepository.getById(credencialId);
+  if(credential.userId != userId)
+    throw {type: "Forbidden", message: "Not your credential"}
+  return credential;
+}
