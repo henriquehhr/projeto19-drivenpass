@@ -13,26 +13,12 @@ export async function insert(safeNote: CreateSafeNote) {
 }
 
 export async function getById(safeNoteId: number) {
-  const safeNote = await prisma.safeNote.findUnique({
-    where: {id: safeNoteId},
-    select: {
-      title: true,
-      text: true,
-      userId: true
-    }
-  });
+  const safeNote = await prisma.safeNote.findUnique({where: {id: safeNoteId}});
   return safeNote;
 }
 
 export async function getByUserId(userId: number) {
-  const safeNotes = await prisma.safeNote.findMany({
-    where: {userId},
-    select: {
-      title: true,
-      text: true,
-      userId: true
-    }
-  });
+  const safeNotes = await prisma.safeNote.findMany({where: {userId}});
   return safeNotes;
 }
 
