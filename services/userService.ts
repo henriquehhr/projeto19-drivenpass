@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 
-import { User } from "@prisma/client";
 import * as userRepository from "../repositories/userRepository.js";
 import {CreateUser, LoginUser} from "../repositories/userRepository.js";
 

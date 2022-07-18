@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateSafeNote } from "../repositories/safeNoteRepository";
+import { CreateSafeNote } from "../repositories/safeNoteRepository.js";
 
 import * as safeNoteService from "../services/safeNoteService.js";
 

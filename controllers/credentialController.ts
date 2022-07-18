@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateCredential } from "../repositories/credentialRepository";
+import { CreateCredential } from "../repositories/credentialRepository.js";
 
 import * as credentialService from "../services/credentialService.js";
 
