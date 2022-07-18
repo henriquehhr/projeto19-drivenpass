@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 export async function authenticateUser(req: Request, res: Response, next: NextFunction) {
 
@@ -7,7 +9,7 @@ export async function authenticateUser(req: Request, res: Response, next: NextFu
     if (validateTokenFormat != "Bearer ") {
         return res.sendStatus(422);
     }
-    const jwtKey = process.env.JWT_KEY;
+    const jwtKey = process.env.JWT_SECRET;
     const token = req.headers.authorization.slice(7);
     if (jwt.verify(token, jwtKey)){
       res.locals.user = jwt.decode(token);
