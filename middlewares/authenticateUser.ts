@@ -7,7 +7,8 @@ export async function authenticateUser(req: Request, res: Response, next: NextFu
 
     const validateTokenFormat = req.headers.authorization.slice(0, 7);
     if (validateTokenFormat != "Bearer ") {
-        return res.sendStatus(422);
+        //return res.sendStatus(422);
+        throw {type: "Unprocessable entity", message: "Authorization header in wrong format"}
     }
     const jwtKey = process.env.JWT_SECRET;
     const token = req.headers.authorization.slice(7);
