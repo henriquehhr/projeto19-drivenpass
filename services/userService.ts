@@ -1,5 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
+import dotenv from "dotenv";
+dotenv.config();
 
 import * as userRepository from "../repositories/userRepository.js";
 import {CreateUser, LoginUser} from "../repositories/userRepository.js";
@@ -15,7 +17,7 @@ export async function insert(user: CreateUser) {
 
 export async function sigin (user: LoginUser) {
   const userData = await userRepository.findByEmail(user.email);
-  if (userData && bcrypt.compareSync(userData.password, user.password)) {
+  if (userData && bcrypt.compareSync(user.password, userData.password)) {
     const secretKey = process.env.JWT_SECRET;
     delete userData.password;
     const token = jwt.sign({ userData }, secretKey);
