@@ -7,7 +7,7 @@ import * as credentialRepository from "../repositories/credentialRepository.js";
 
 export async function insert(credential: CreateCredential) {
   const credentialSameTitle = await credentialRepository.findByTitle(credential.title);
-  if(credentialSameTitle)
+  if(credentialSameTitle?.userId == credential.userId)
     throw {type: "Conflict", message: "Title already choosen"};
   const cryptr = new Cryptr(process.env.CRYPTR_KEY);
   const encryptedPassword = cryptr.encrypt(credential.password);

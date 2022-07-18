@@ -7,7 +7,7 @@ import * as cardRepository from "../repositories/cardRepository.js";
 
 export async function insert(card: CreateCard) {
   const cardSameTitle = await cardRepository.findByTitle(card.title);
-  if(cardSameTitle)
+  if(cardSameTitle?.userId == card.userId)
     throw {type: "Conflict", message: "Title already choosen"};
   const cryptr = new Cryptr(process.env.CRYPTR_KEY);
   const encryptedPassword = cryptr.encrypt(card.password);
