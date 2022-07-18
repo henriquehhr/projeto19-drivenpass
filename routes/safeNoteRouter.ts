@@ -25,6 +25,6 @@ safeNoteRouter.get(
   getByUserId
 );
 
-safeNoteRouter.delete("/credentials/:id", authenticateUser, remove);
+safeNoteRouter.delete("/safenotes/:id", authenticateUser, remove);
 
 export default safeNoteRouter;
