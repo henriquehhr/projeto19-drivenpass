@@ -5,7 +5,7 @@ export const newCardSchema = joi.object<CreateCard>({
     title: joi.string().required(),
     number: joi.string().required(),
     printedName: joi.string().required(),
-    CVV: joi.string().required(),
+    CVV: joi.string().regex(/^[0-9]{3,4}$/).required(),
     expirationDate: joi.string().regex(/^[0-9]{2}\/[0-9]{2}$/).required(),
     password: joi.string().required(),
     isVirtual: joi.boolean().required(),
