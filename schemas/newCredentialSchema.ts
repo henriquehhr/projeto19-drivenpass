@@ -1,5 +1,5 @@
 import joi from "joi";
-import { CreateCredential } from "../repositories/credentialRepository";
+import { CreateCredential } from "../repositories/credentialRepository.js";
 
 export const newCredentialSchema = joi.object<CreateCredential>({
     title: joi.string().required(),

@@ -47,6 +47,7 @@ model SafeNote {
 
 model Card {
   id Int @id @default(autoincrement())
+  title String
   number String
   printedName String
   CVV String
