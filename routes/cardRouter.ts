@@ -20,7 +20,7 @@ cardRouter.get(
 );
 
 cardRouter.get(
-  "/cards/",
+  "/cards",
   authenticateUser,
   getByUserId
 );

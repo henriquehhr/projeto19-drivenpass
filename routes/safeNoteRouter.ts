@@ -20,7 +20,7 @@ safeNoteRouter.get(
 );
 
 safeNoteRouter.get(
-  "/safenotes/",
+  "/safenotes",
   authenticateUser,
   getByUserId
 );

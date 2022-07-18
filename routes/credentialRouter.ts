@@ -20,7 +20,7 @@ credentialRouter.get(
 );
 
 credentialRouter.get(
-  "/credentials/",
+  "/credentials",
   authenticateUser,
   getByUserId
 );
