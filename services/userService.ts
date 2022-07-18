@@ -20,7 +20,7 @@ export async function signin (user: LoginUser) {
   if (userData && bcrypt.compareSync(user.password, userData.password)) {
     const secretKey = process.env.JWT_SECRET;
     delete userData.password;
-    const token = jwt.sign({ userData }, secretKey);
+    const token = jwt.sign(userData, secretKey);
     return token;
   }
   throw {type: "Unauthorized", message: "Wrong credentials"};
