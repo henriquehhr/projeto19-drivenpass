@@ -50,7 +50,7 @@ model Card {
   number String
   printedName String
   CVV String
-  expirationDate DateTime
+  expirationDate String
   password String
   isVirtual Boolean @default(false)
   type String
