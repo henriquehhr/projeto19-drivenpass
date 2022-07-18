@@ -13,29 +13,12 @@ export async function insert(credential: CreateCredential) {
 }
 
 export async function getById(credencialId: number) {
-  const credential = await prisma.credential.findUnique({
-    where: {id: credencialId},
-    select: {
-      title: true,
-      username: true,
-      url: true,
-      password: true,
-      userId: true
-    }
-  });
+  const credential = await prisma.credential.findUnique({where: {id: credencialId}});
   return credential;
 }
 
 export async function getByUserId(userId: number) {
-  const credentials = await prisma.credential.findMany({
-    where: {userId},
-    select: {
-      title: true,
-      username: true,
-      url: true,
-      password: true
-    }
-  });
+  const credentials = await prisma.credential.findMany({where: {userId}});
   return credentials;
 }
 
