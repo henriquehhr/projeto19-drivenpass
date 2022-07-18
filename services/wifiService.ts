@@ -1,4 +1,6 @@
 import Cryptr from "cryptr";
+import dotenv from "dotenv";
+dotenv.config();
 
 import { CreateWifi } from "../repositories/wifiRepository.js";
 import * as wifiRepository from "../repositories/wifiRepository.js";

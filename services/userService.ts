@@ -15,7 +15,7 @@ export async function insert(user: CreateUser) {
   await userRepository.insert(user);
 }
 
-export async function sigin (user: LoginUser) {
+export async function signin (user: LoginUser) {
   const userData = await userRepository.findByEmail(user.email);
   if (userData && bcrypt.compareSync(user.password, userData.password)) {
     const secretKey = process.env.JWT_SECRET;

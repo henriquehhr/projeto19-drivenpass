@@ -1,4 +1,6 @@
 import Cryptr from "cryptr";
+import dotenv from "dotenv";
+dotenv.config();
 
 import { CreateCard } from "../repositories/cardRepository.js";
 import * as cardRepository from "../repositories/cardRepository.js";

@@ -1,4 +1,6 @@
 import Cryptr from "cryptr";
+import dotenv from "dotenv";
+dotenv.config();
 
 import { CreateCredential } from "../repositories/credentialRepository.js";
 import * as credentialRepository from "../repositories/credentialRepository.js";
