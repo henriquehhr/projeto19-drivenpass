@@ -5,6 +5,7 @@ import * as safeNoteService from "../services/safeNoteService.js";
 
 
 export async function insert (req: Request, res: Response) {
+
   const user = res.locals.user;
   const safeNote: CreateSafeNote = {
     ... req.body, userId: user.id

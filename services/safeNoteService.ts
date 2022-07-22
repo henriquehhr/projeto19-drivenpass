@@ -2,6 +2,7 @@ import { CreateSafeNote } from "../repositories/safeNoteRepository.js";
 import * as safeNoteRepository from "../repositories/safeNoteRepository.js";
 
 export async function insert(safeNote: CreateSafeNote) {
+
   const safeNoteSameTitle = await safeNoteRepository.findByTitle(safeNote.title);
   if(safeNoteSameTitle?.userId == safeNote.userId)
     throw {type: "Conflict", message: "Title already choosen"};
